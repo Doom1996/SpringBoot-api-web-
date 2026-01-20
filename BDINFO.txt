@@ -1,0 +1,8 @@
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql=TRACE
+
+
+
+Esto va en application.properties.:activo los logs para ver si se ejecuta SELECT y para ver las filas y columnas
