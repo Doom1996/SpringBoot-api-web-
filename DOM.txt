@@ -1,0 +1,19 @@
+DOM(Document Object Model):Es una representación del HTML en memoria, organizada como un árbol de objetos, que el navegador crea cuando carga una página.
+
+*El DOM es el HTML convertido en objetos que JavaScript puede leer y modificar.
+*Se accede al DOM para modificarlo desde un javascript(Es el punto de entrada para JavaScript)
+------------------------------------------------------
+document.getElementById("titulo").textContent = "Hola";
+-------------------------------------------------------
+let div = document.querySelector('div');
+
+function colors(){
+  div.innetHTML = "Esto viene desde JS"
+  div.style.marginTop = "50px"
+  div.style.background = "aliceblue";
+}
+Esto permite crear funcionalidades en sitios web.
+
+------En el metodo POST
+body: JSON.stringify(datos)
+"Los datos viajan al backend para convertirse en información persistente o en decisiones del sistema"

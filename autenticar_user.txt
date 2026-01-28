@@ -1,0 +1,20 @@
+Esta Clase de la capa controller se usa para verificar que existe el usuario en la BD y la contraseña coincide.
+
+URl debe ser la misma que usar login. api/login con metodo POST ya que el usuario insertara sus datos,aqui capturamos
+los datos que ingresa el usuario y lo transformaremos en un JSON para luego mandarlos al backend en peticion HTTP
+
+En el backend DAO/Controller reecibimos estos datos por medio de @RequestBody y lo insertaremos en una BD aplicando la logica
+del backend(validaciones,reglas de negocio,acceso a BD)
+()@RequestBody User user) tiene que ver con body: JSON.stringify(datos)
+
+
+Resumido:
+El frontend captura y envía datos
+El backend los procesa y los persiste
+
+
+
+
+
+
+

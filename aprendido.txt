@@ -1,4 +1,6 @@
-﻿En este proyecto primero comentare acerca de la paginacion y iniciacion  de la tabla:
+﻿Este api es un sistema de gestion de usuario,usaremos servidores en la nube para guardarlos
+
+En este proyecto primero comentare acerca de la paginacion y iniciacion  de la tabla:
 
 (Diseño de la base da datos cuanto te da error de phone no puede ser null.cambiar en mysql la pestaña Estructura y poner null ✓)
 
@@ -31,4 +33,26 @@ Esto lo que hace es que cuando nosotros completemos la casilla nombre me devuelv
 
 Quiero que cuando se aprete el boton registrar se ejecute la funcion que guarda los datos en la BD.la funcion se crea en el 
 register.js y se coloca(llama) en el register.html => boton Registrarse/register agregar onclick="registrar()"
+
+----------------
+¿Donde se llaman las funciones de javascript?
+En la funcion login.js se llamara en login.html y se usara cuando el usuario oprima el boton registrar
+---------------
+URL QUE USARA LA API REST
+Los metodos POST,DELETE,GET usaran la misma URL "endpoint" que hay en el Controller y la funcion loadUser() de javascript.
+DELETE usar `api/users/{id}`.No devuelve nada
+
+(REST)
+La URL identifica el recurso
+El método HTTP define la acción
+
+En UserController,en los metodos HTTP: DELETE puede usar un console.log() para ver lo que devuelve este metodo,Se agrega
+return "" en el metodo de UserController que toma el DELETE"deleteUser" de javascript, se codifica console.log(message)
+
+:::::::A TENER EN CUENTA:::::::::
+  JS → HTTP → Spring → método Java
+  Spring solo enruta según:
+  📍 URL
+  📍 método HTTP
+
 

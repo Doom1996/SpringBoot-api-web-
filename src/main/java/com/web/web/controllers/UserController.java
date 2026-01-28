@@ -1,7 +1,6 @@
 package com.web.web.controllers;
 
 import com.web.web.models.User;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,13 @@ public class UserController {
     @RequestMapping(value = "api/users", method = RequestMethod.POST)
     public void registerUser(@RequestBody User user){//@RequestBody lee el cuerpo de la request HTTP(por ejemplo un JSON enviado en un POST y lo mapea a un objeto Java (User en tu caso)
         userDao.registerUser(user);
-    }
+    }//lee body del POST en login.js
 
 
-    @RequestMapping(value = "api/users/{id}" , method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Long id) {
+    @RequestMapping(value = "api/users/{id}" , method = RequestMethod.DELETE)//no olvidar el {id} dinamico
+    public String deleteUser(@PathVariable Long id) {
         userDao.deleteUser(id);
+        return "Usuario eliminado correctamente";
     }
 
 }

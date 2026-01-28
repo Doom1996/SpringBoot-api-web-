@@ -1,0 +1,18 @@
+El archivo login.js es frontend 🎨 Frontend (cliente — lo que el usuario ve y usa)
+-------------------------------
+Todo esto ocurre en el navegador del usuario:
+Usa el DOM (inputs, botones, formularios)
+Envía peticiones HTTP al servidor
+
+Eso es frontend puro (JavaScript del cliente)
+
+Corre en el navegador:
+
+HTML (pantallas)
+CSS (diseño)
+JavaScript (login.js, user.js, fetch, botones)
+Formularios
+Eventos
+
+Concepto de mi app:login.js es frontend que consume una API backend hecha en Spring Boot
+
