@@ -2,6 +2,8 @@ package com.web.web.dao;
 
 import com.web.web.models.User;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -36,7 +38,26 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public boolean verifyUserEmailPassword(User user) {//existe algun email en la BD que ingreso el usuario?
+    public boolean verifyUserEmailPassword(User user) {//existe algun email en la BD que ingreso el usuario,y la contraseña coincide?se usa para login
+        String query = "FROM User WHERE email = :email";//ataque de inyeccion SQL,previsto
+       List<User> lista =  entityManager
+                .createQuery(query, User.class)
+                .setParameter("email", user.getEmail())//buscar por email
+                .getResultList();//lista con el usuario
+       
+       if(lista.isEmpty()){
+           return false;
+       }
+
+       String passwordHashed = lista.get(0).getPassword();
+
+       Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2d);
+       return argon2.verify(passwordHashed, user.getPassword());//rehashea internamente
+    }
+}
+/*
+ @Override
+    public boolean verifyUserEmailPassword(User user) {//existe algun email en la BD que ingreso el usuario,y la contraseña coincide?
         String query = "FROM User WHERE email = :email AND password = :password ";//ataque de inyeccion SQL,previsto
        List<User> lista =  entityManager
                 .createQuery(query, User.class)
@@ -44,6 +65,4 @@ public class UserDaoImp implements UserDao {
                 .setParameter("password", user.getPassword())
                 .getResultList();
        return !lista.isEmpty();
-       }
-    }
-
+}*/

@@ -22,24 +22,23 @@ for(let user of usersJson){//aqui se esta accediendo a un JSON se accede a propi
             class="btn btn-danger btn-circle">
             <i class="fas fa-trash"></i>
         </a>
-    `;//llamo a la funcion deleteUser(id) cuando swe hace click en el boton <a> se ejecuta la funcion."#" el navagador no navega a otra pagina
+    `;//llamo a la funcion deleteUser(id) cuando se hace click en el boton <a> se ejecuta la funcion."#" el navagador no navega a otra pagina
 
     let phone = user.phone == null ? '-' : user.phone;
     let userHtml = `
    <tr>
-       <td>${user.id}</td
-       <td>${user.name}</td>
-       <td>${user.lastName}</td>
+       <td>${user.id}</td>
+       <td>${user.name} ${user.lastName}</td>
+       <td>${user.email}</td>
        <td>${user.phone}</td>
        <td>${buttonDelete}</td>
-   </tr>
-   `;//esto es para cargar el usuario en la tabla con datos dinamicos.como se mostrara la tabla de usuarios
+   </tr>`;//esto es para cargar el usuario en la tabla con datos dinamicos.como se mostrara la tabla de usuarios
 
 
   listaHtml += userHtml;
 }
-  document.querySelector('#usuarios tbody').outerHTML = listaHtml;//codigo probado en consola de Firefox:Busca un nodo del DOM que cumpla exactamente esto.inserta el HTML en la tabla.esto ocurre en memoria ,no cambia el HTML
-}
+  document.querySelector('#usuarios tbody').outerHTML = listaHtml;//codigo probado en consola de Firefox:Busca un nodo del DOM que cumpla exactamente esto.obtenemos todo el codigo html del elemento tbody con id= usuarios
+ }
 
 async function deleteUser(id){
     if(!confirm("¿Desea eliminar el usuario?")){//confirm devuelve true o false

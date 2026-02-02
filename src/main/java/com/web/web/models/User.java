@@ -23,10 +23,10 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email") // Corregido: antes apuntaba a phone
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone") // Corregido: antes apuntaba a email
+    @Column(name = "phone")
     private String phone;
 
     @Column(name = "password")
@@ -59,7 +59,7 @@ public class User {
     }
 
     public void SetLastName(String last_name) {
-        this.lastName = lastName;
+        this.lastName = last_name;
     }
 
     public String getEmail() {
@@ -85,9 +85,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-    // --- Método ToString ---
 
     @Override
     public String toString() {

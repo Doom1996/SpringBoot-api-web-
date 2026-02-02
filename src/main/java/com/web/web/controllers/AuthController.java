@@ -13,7 +13,7 @@ public class AuthController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(value = "api/login", method = RequestMethod.POST)
+    @RequestMapping(value = "api/login", method = RequestMethod.POST)//la url enlaza con el archivo login.js
     public String login(@RequestBody User user){//@RequestBody lee el cuerpo de la request HTTP(por ejemplo un JSON enviado en un POST y lo mapea a un objeto Java (User en tu caso)
 
         if(userDao.verifyUserEmailPassword(user)){
