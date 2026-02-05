@@ -16,3 +16,15 @@ Eventos
 
 Concepto de mi app:login.js es frontend que consume una API backend hecha en Spring Boot
 
+---------------token--------------------
+
+Spring Boot (el Backend) no guarda el token en el cliente. El backend solo lo genera y lo envía como respuesta.
+Es la Capa de Presentación (Frontend) la que decide cómo y dónde almacenarlo.
+
+Backend (Spring): Crea el token -> Lo firma -> Lo envía.
+
+Frontend (JS): Recibe el token -> Lo guarda (localStorage o Cookie) -> Lo envía de vuelta en cada header de las siguientes peticiones.
+
+
+
+

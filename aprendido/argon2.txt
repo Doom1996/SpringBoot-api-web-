@@ -1,0 +1,27 @@
+Argon2 se utiliza principalmente para el hashing de contraseñas. Es considerado actualmente uno de los algoritmos más seguros y robustos, diseñado específicamente para resistir ataques de fuerza bruta y hardware especializado (como GPUs o ASICs).: 
+
+"La constraseña se verifica con los plugins de argon2"
+Configuración Adaptable
+-----------------------
+Argon2 permite ajustar tres parámetros clave para adaptarse al hardware de tu servidor:
+Memoria: Cuánta RAM se usa por cada hash.
+Iteraciones: Cuántas veces se repite el proceso (tiempo de CPU).
+Paralelismo: Cuántos hilos de ejecución se utilizan.
+
+
+Almacenar el resultado en un formato que incluye los parámetros utilizados, permitiéndote verificar la contraseña más tarde de forma automática.
+
+Nota importante: Aunque Argon2 es extremadamente seguro, requiere más recursos de tu servidor. Si tienes un servidor con muy poca RAM y miles de usuarios logueándose al mismo tiempo, debes calibrar bien los parámetros para no afectar el rendimiento
+
+------------------------
+En resumen argon2 Convierte una contraseña en un hash irreversible y resistente a ataques.
+
+Cuando el usuario se registra:password → Argon2 → hash → base de datos   --Nunca guardás la contraseña real.
+
+Cuando se logea el usuario: password ingresada → Argon2 → comparás con hash guardado
+Si coincide,usuario valido
+
+
+
+
+

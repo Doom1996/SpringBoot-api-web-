@@ -8,5 +8,5 @@ public interface UserDao {//funciones que deberia tener esta clase
     List<User> getUsers();
     void deleteUser(Long id);
     void registerUser(User user);
-    boolean verifyUserEmailPassword(User user);
+    User getUserByCredentials(User user);
 }

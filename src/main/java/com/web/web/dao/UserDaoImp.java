@@ -37,8 +37,9 @@ public class UserDaoImp implements UserDao {
         entityManager.merge(user);
     }
 
+
     @Override
-    public boolean verifyUserEmailPassword(User user) {//existe algun email en la BD que ingreso el usuario,y la contraseña coincide?se usa para login
+    public User getUserByCredentials(User user) {//existe algun email en la BD que ingreso el usuario,y la contraseña coincide?se usa para login
         String query = "FROM User WHERE email = :email";//ataque de inyeccion SQL,previsto
        List<User> lista =  entityManager
                 .createQuery(query, User.class)
@@ -46,13 +47,16 @@ public class UserDaoImp implements UserDao {
                 .getResultList();//lista con el usuario
        
        if(lista.isEmpty()){
-           return false;
+           return null;
        }
-
+        //user se contruye con los datos del POST
        String passwordHashed = lista.get(0).getPassword();
 
        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2d);
-       return argon2.verify(passwordHashed, user.getPassword());//rehashea internamente
+      if(argon2.verify(passwordHashed, user.getPassword())){//Argon2 necesita la contraseña original(el usuario ingreso) para volver a hashearla y compararla contra el hash almacenado.
+            return lista.get(0);//si la verificacion fue correcta devuelve el user
+      };
+      return null;
     }
 }
 /*

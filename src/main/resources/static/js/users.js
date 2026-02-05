@@ -51,7 +51,8 @@ async function deleteUser(id){
           'Content-Type': 'application/json'
         },
       });
-     //location.reload();
      const message = await request.text();//no se necesita si el backend devuelve void(create,delete,update)
      console.log(message);
+     location.reload();
+
 }

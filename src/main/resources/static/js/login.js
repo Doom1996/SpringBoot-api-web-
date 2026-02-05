@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 async function login(){
 
-    let datos = {};
+    let datos = {};//estos datos se envian desde el body,son usados por getUserByCredentials(user)
     datos.email = document.getElementById(`txtEmail`).value;
     datos.password = document.getElementById(`txtPassword`).value;
 
@@ -19,7 +19,9 @@ async function login(){
 
   });
   const response = await request.text();
-  if(response == 'OK'){
+  if(response != 'FAIL'){
+    localStorage.token = response;//guardamos la informacion en el cliente
+    localStorage.email = datos.email;
     window.location.href = 'users.html';
   }
     else {
