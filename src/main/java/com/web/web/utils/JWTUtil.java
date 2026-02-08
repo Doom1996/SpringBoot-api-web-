@@ -1,5 +1,6 @@
 package com.web.web.utils;
-
+//version introductoria:Jwts.parser() está deprecated.
+//Esta clase se encarga de Crear, firmar, validar y leer JWTs
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -23,10 +24,10 @@ public class JWTUtil {
     private String key;//le carga lo de  application.properties a key(Clave secreta del server).valida tokens
 
     @Value("${security.jwt.issuer}")
-    private String issuer;//quien emitio el tokens
+    private String issuer;//Identifica quién emitió el token.es para validar que el token viene de tu backend
 
     @Value("${security.jwt.ttlMillis}")
-    private long ttlMillis;//tiempo de vida del token
+    private long ttlMillis;//tiempo de vida del token,Seguridad contra robo de tokens
 
     private final Logger log = LoggerFactory
             .getLogger(JWTUtil.class);
@@ -40,7 +41,7 @@ public class JWTUtil {
      */
     public String create(String id, String subject) {//crea el JWT,Token
 
-        // The JWT signature algorithm used to sign the token
+        // The JWT signature algorithm used to sign the token(algoritmo simétrico)
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
         long nowMillis = System.currentTimeMillis();
@@ -48,9 +49,9 @@ public class JWTUtil {
 
         //  sign JWT with our ApiKey secret
         byte[] apiKeySecretBytes = Base64.getDecoder().decode(key);
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());//Key criptográfica
 
-        //  set the JWT Claims
+        //  set the JWT Claims(el corazón del JWT)NO es secreto, cualquiera puede leerlos
         JwtBuilder builder = Jwts.builder().setId(id).setIssuedAt(now).setSubject(subject).setIssuer(issuer)
                 .signWith(signatureAlgorithm, signingKey);
 
@@ -72,7 +73,7 @@ public class JWTUtil {
      */
     public String getValue(String jwt) {//devuelve informacion del token.Permisos,roles de usuario.LOS LEE
         // This line will throw an exception if it is not a signed JWS (as
-        // expected)
+        // expected)Veridica token
         Claims claims = Jwts.parser().setSigningKey(Base64.getDecoder().decode(key))
                 .parseClaimsJws(jwt).getBody();
 
