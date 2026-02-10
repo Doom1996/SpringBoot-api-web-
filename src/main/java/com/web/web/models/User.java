@@ -6,6 +6,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.*;
+
+
 //Problema lombok.Devuelve array vacio en backen
 
 @Entity
@@ -17,18 +20,36 @@ public class User {
     @Column(name = "id")
     private Long id;
 
+    @NotBlank
+    @Size(min = 2, max = 50)
     @Column(name = "name")
     private String name;
 
+    @NotBlank
+    @Size(min = 2, max = 50)
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @NotBlank
+    @Email
+    @Column(name = "email", unique = true)
     private String email;
 
+    //@NotBlank
+   // @Pattern(
+    //        regexp = "^[0-9]{8,15}$",
+    //        message = "Teléfono inválido"
+    //)
     @Column(name = "phone")
     private String phone;
 
+
+    @NotBlank
+    @Size(min = 8)
+    @Pattern(
+            regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%!]).+$",
+            message = "Password débil"
+    )
     @Column(name = "password")
     private String password;
 

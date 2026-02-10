@@ -29,6 +29,6 @@ async function registerUser(){
   });//backend devolviendo un json y se guarda en usersJson.backend Coinciden en URL y método HTTP, que es lo que hace que la comunicación funcione.
   //const usersJson = await request.json();//Contiene status HTTP (200, 404, 500…),headers,cuerpo HTTP
     alert("La cuenta fue creada exitosamente!!");
-    window.location.href = 'login.html';
+    //window.location.href = 'login.html';
 
 }
