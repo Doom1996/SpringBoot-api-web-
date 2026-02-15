@@ -18,9 +18,9 @@ public class AuthController {
     @RequestMapping(value = "api/login", method = RequestMethod.POST)//la url enlaza con el archivo login.js
     public String login(@RequestBody User user){//@RequestBody lee el cuerpo de la request HTTP(por ejemplo un JSON enviado en un POST y lo mapea a un objeto Java (User en tu caso)
 
-        User userLog = userDao.getUserByCredentials(user);
+        User userLog = userDao.getUserByCredentials(user);//buscar el usuario en BD
         if(userLog != null){
-          String tokenJWT = jwtUtil.create(String.valueOf(userLog.getId()), userLog.getEmail());
+          String tokenJWT = jwtUtil.create(String.valueOf(userLog.getId()), userLog.getEmail());//genera el token en base a estos dos datos
             return tokenJWT;
          }
         return "FAIL";

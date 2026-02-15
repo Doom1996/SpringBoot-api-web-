@@ -4,11 +4,11 @@ $(document).ready(function() {
 });
 async function login(){
 
-    let datos = {};//estos datos se envian desde el body,son usados por getUserByCredentials(user)
+    let datos = {};//estos datos se envian desde el body(una vez),son usados por getUserByCredentials(user)
     datos.email = document.getElementById(`txtEmail`).value;
     datos.password = document.getElementById(`txtPassword`).value;
 
-
+    //endpoints públicos,No existe aun TOKEN
     const request = await fetch('api/login', {
     method: 'POST',
     headers: {
@@ -19,7 +19,7 @@ async function login(){
 
   });
   const response = await request.text();
-  if(response != 'FAIL'){
+  if(response != 'FAIL'){//la logica se maneja en AuthController
     localStorage.token = response;//guardamos la informacion en el cliente
     localStorage.email = datos.email;
     window.location.href = 'users.html';

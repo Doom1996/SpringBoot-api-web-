@@ -38,7 +38,7 @@ public class UserDaoImp implements UserDao {
     }
 
 
-    @Override
+    @Override//getUserByCredentials:buscar en tu base de datos.si existe un registro que coincida con la identidad que el usuario está proporcionando.
     public User getUserByCredentials(User user) {//existe algun email en la BD que ingreso el usuario,y la contraseña coincide?se usa para login
         String query = "FROM User WHERE email = :email";//ataque de inyeccion SQL,previsto
        List<User> lista =  entityManager
